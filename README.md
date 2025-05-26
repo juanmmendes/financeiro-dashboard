@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Finance Dashboard Logo](public/favicon.svg)
+
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/)
@@ -62,14 +62,7 @@ yarn start
 - [React Icons](https://react-icons.github.io/react-icons/) - Ícones para React
 - [LocalStorage API](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage) - Armazenamento local dos dados
 
-## 📱 Interface
 
-<div align="center">
-
-### 🌞 Modo Claro
-![Light Mode](link-para-screenshot-modo-claro)
-
-</div>
 
 ## 📈 Estrutura do Projeto
 
