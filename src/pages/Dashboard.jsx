@@ -18,14 +18,14 @@ const DashboardContainer = styled.div`
 
 const Header = styled.div`
   margin-bottom: 2rem;
-  background: var(--gradient-primary);
+  background: var(--primary);
   padding: 2rem;
   border-radius: var(--radius-lg);
-  color: white;
+  color: var(--surface);
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -39,26 +39,39 @@ const Header = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: white;
+  color: var(--surface);
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  font-weight: 700;
 
   svg {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   }
 `;
 
 const Subtitle = styled.p`
-  opacity: 0.95;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  opacity: 0.9;
+  font-size: 1rem;
+  color: var(--surface);
+`;
+
+const MainContent = styled.div`
+  animation: slideUp 0.5s ease-out;
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const Summary = styled.div`
@@ -69,15 +82,17 @@ const Summary = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    margin: -2rem 0 2rem 0;
   }
 `;
 
 const CategorySection = styled.div`
-  background: var(--white);
+  background: var(--surface);
   padding: 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   margin-top: 2rem;
+  border: 1px solid var(--border);
   animation: fadeIn 0.5s ease-out;
 
   @keyframes fadeIn {
@@ -93,7 +108,7 @@ const CategorySection = styled.div`
 `;
 
 const CategoryTitle = styled.h3`
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -113,21 +128,23 @@ const CategoryGrid = styled.div`
 `;
 
 const CategoryCard = styled.div`
-  background: var(--lighter);
+  background: var(--background);
   padding: 1.25rem;
   border-radius: var(--radius-md);
+  border: 1px solid var(--border);
   transition: all 0.2s ease;
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-sm);
+    background: var(--surface);
   }
 `;
 
 const CategoryName = styled.span`
   display: block;
   font-weight: 500;
-  color: var(--dark);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
 `;
@@ -137,21 +154,6 @@ const CategoryValue = styled.span`
   font-weight: 600;
   font-size: 1.1rem;
   color: ${({ $type }) => $type === 'income' ? 'var(--success)' : 'var(--danger)'};
-`;
-
-const MainContent = styled.div`
-  animation: slideUp 0.5s ease-out;
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 `;
 
 const Dashboard = () => {

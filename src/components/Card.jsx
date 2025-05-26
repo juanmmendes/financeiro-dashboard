@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { FaWallet, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
 const CardContainer = styled.div`
-  background: var(--white);
+  background: var(--surface);
   padding: 1.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: transform 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--border);
 
   &:hover {
     transform: translateY(-5px);
@@ -26,11 +27,11 @@ const CardContainer = styled.div`
     background: ${({ $type }) => {
       switch ($type) {
         case 'income':
-          return 'var(--gradient-success)';
+          return 'var(--success)';
         case 'expense':
-          return 'var(--gradient-danger)';
+          return 'var(--danger)';
         default:
-          return 'var(--gradient-primary)';
+          return 'var(--primary)';
       }
     }};
   }
@@ -53,16 +54,6 @@ const IconWrapper = styled.div`
   background: ${({ $type }) => {
     switch ($type) {
       case 'income':
-        return 'var(--success-light)';
-      case 'expense':
-        return 'var(--danger-light)';
-      default:
-        return 'var(--primary-light)';
-    }
-  }};
-  color: ${({ $type }) => {
-    switch ($type) {
-      case 'income':
         return 'var(--success)';
       case 'expense':
         return 'var(--danger)';
@@ -70,10 +61,11 @@ const IconWrapper = styled.div`
         return 'var(--primary)';
     }
   }};
+  opacity: 0.2;
 `;
 
 const CardTitle = styled.h3`
-  color: var(--gray);
+  color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
 `;
@@ -81,7 +73,7 @@ const CardTitle = styled.h3`
 const CardValue = styled.div`
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text-primary);
   margin-top: 0.5rem;
 `;
 

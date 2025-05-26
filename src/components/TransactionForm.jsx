@@ -4,15 +4,16 @@ import { useFinance } from '../context/FinanceContext';
 import { FaMoneyBillWave, FaShoppingCart } from 'react-icons/fa';
 
 const FormContainer = styled.div`
-  background: var(--white);
+  background: var(--surface);
   padding: 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   margin-top: 2rem;
+  border: 1px solid var(--border);
 `;
 
 const FormTitle = styled.h3`
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -46,18 +47,15 @@ const TypeButton = styled.button`
   background: ${({ $active, $transactionType }) => 
     $active 
       ? $transactionType === 'income' 
-        ? 'var(--success-light)' 
-        : 'var(--danger-light)'
-      : 'var(--lighter)'};
-  color: ${({ $active, $transactionType }) => 
-    $active 
-      ? $transactionType === 'income' 
         ? 'var(--success)' 
         : 'var(--danger)'
-      : 'var(--gray)'};
+      : 'var(--background)'};
+  color: ${({ $active }) => 
+    $active ? 'var(--surface)' : 'var(--text-secondary)'};
   border-radius: var(--radius-md);
   font-weight: 600;
   transition: all 0.2s ease;
+  border: 1px solid var(--border);
 
   svg {
     font-size: 1.2rem;
@@ -65,9 +63,8 @@ const TypeButton = styled.button`
 
   &:hover {
     background: ${({ $transactionType }) =>
-      $transactionType === 'income' ? 'var(--success-light)' : 'var(--danger-light)'};
-    color: ${({ $transactionType }) =>
-      $transactionType === 'income' ? 'var(--success)' : 'var(--danger)'};
+      $transactionType === 'income' ? 'var(--success-hover)' : 'var(--danger-hover)'};
+    color: var(--surface);
   }
 `;
 
@@ -88,49 +85,53 @@ const FieldGroup = styled.div`
 `;
 
 const Label = styled.label`
-  color: var(--gray);
+  color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
 `;
 
 const Input = styled.input`
   padding: 0.75rem 1rem;
-  border: 2px solid var(--light);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   font-size: 1rem;
   transition: all 0.2s ease;
-  background: var(--lighter);
+  background: var(--background);
+  color: var(--text-primary);
   
   &:focus {
     border-color: var(--primary);
-    background: var(--white);
-    box-shadow: 0 0 0 4px var(--primary-light);
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.mode === 'dark' ? 'rgba(156, 136, 255, 0.2)' : 'rgba(108, 92, 231, 0.2)'};
   }
 
   &::placeholder {
-    color: var(--gray);
+    color: var(--text-secondary);
   }
 `;
 
 const Select = styled.select`
   padding: 0.75rem 1rem;
-  border: 2px solid var(--light);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   font-size: 1rem;
   transition: all 0.2s ease;
-  background: var(--lighter);
-  color: var(--dark);
+  background: var(--background);
+  color: var(--text-primary);
   
   &:focus {
     border-color: var(--primary);
-    background: var(--white);
-    box-shadow: 0 0 0 4px var(--primary-light);
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.mode === 'dark' ? 'rgba(156, 136, 255, 0.2)' : 'rgba(108, 92, 231, 0.2)'};
+  }
+
+  option {
+    background: var(--surface);
+    color: var(--text-primary);
   }
 `;
 
 const SubmitButton = styled.button`
-  background: var(--gradient-primary);
-  color: white;
+  background: var(--primary);
+  color: var(--surface);
   padding: 1rem;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -139,13 +140,14 @@ const SubmitButton = styled.button`
   margin-top: 1rem;
 
   &:hover {
-    opacity: 0.9;
+    background: var(--primary-hover);
     transform: translateY(-2px);
   }
 
   &:disabled {
-    background: var(--light);
+    background: var(--text-secondary);
     transform: none;
+    cursor: not-allowed;
   }
 `;
 

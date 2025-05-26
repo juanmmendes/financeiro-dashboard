@@ -1,14 +1,31 @@
 import React from 'react';
-import Dashboard from './pages/Dashboard';
-import GlobalStyle from './styles/GlobalStyle';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { FinanceProvider } from './context/FinanceContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { useTheme } from './context/ThemeContext';
+import GlobalStyle from './styles/GlobalStyle';
+import Dashboard from './pages/Dashboard';
+import ThemeToggle from './components/ThemeToggle';
+
+const ThemedApp = () => {
+  const { mode } = useTheme();
+  
+  return (
+    <StyledThemeProvider theme={{ mode }}>
+      <GlobalStyle />
+      <Dashboard />
+      <ThemeToggle />
+    </StyledThemeProvider>
+  );
+};
 
 function App() {
   return (
-    <FinanceProvider>
-      <GlobalStyle />
-      <Dashboard />
-    </FinanceProvider>
+    <ThemeProvider>
+      <FinanceProvider>
+        <ThemedApp />
+      </FinanceProvider>
+    </ThemeProvider>
   );
 }
 

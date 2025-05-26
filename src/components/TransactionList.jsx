@@ -4,11 +4,12 @@ import { useFinance } from '../context/FinanceContext';
 import { FaList, FaTrash, FaTags } from 'react-icons/fa';
 
 const ListContainer = styled.div`
-  background: var(--white);
+  background: var(--surface);
   padding: 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   margin-top: 2rem;
+  border: 1px solid var(--border);
 `;
 
 const ListHeader = styled.div`
@@ -20,7 +21,7 @@ const ListHeader = styled.div`
 `;
 
 const ListTitle = styled.h3`
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.2rem;
   font-weight: 600;
   display: flex;
@@ -34,21 +35,30 @@ const ListTitle = styled.h3`
 
 const FilterSelect = styled.select`
   padding: 0.5rem 2.5rem 0.5rem 1rem;
-  border: 2px solid var(--light);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   font-size: 0.9rem;
-  background: var(--lighter);
-  color: var(--dark);
+  background: var(--background);
+  color: var(--text-primary);
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: ${({ theme }) => `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${
+    theme.mode === 'dark' ? '%23A0A0B2' : '%23636E72'
+  }' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`};
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1em;
   
   &:focus {
     border-color: var(--primary);
-    background-color: var(--white);
-    box-shadow: 0 0 0 4px var(--primary-light);
+    box-shadow: 0 0 0 3px ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'rgba(156, 136, 255, 0.2)' 
+        : 'rgba(108, 92, 231, 0.2)'};
+  }
+
+  option {
+    background: var(--surface);
+    color: var(--text-primary);
   }
 `;
 
@@ -64,12 +74,13 @@ const TransactionItem = styled.div`
   gap: 1.5rem;
   padding: 1rem;
   border-radius: var(--radius-md);
-  background: var(--lighter);
+  background: var(--background);
+  border: 1px solid var(--border);
   transition: all 0.2s ease;
 
   &:hover {
     transform: translateX(5px);
-    background: white;
+    background: var(--surface);
     box-shadow: var(--shadow-sm);
   }
 `;
@@ -81,12 +92,12 @@ const TransactionInfo = styled.div`
 `;
 
 const Description = styled.span`
-  color: var(--dark);
+  color: var(--text-primary);
   font-weight: 500;
 `;
 
 const Category = styled.span`
-  color: var(--gray);
+  color: var(--text-secondary);
   font-size: 0.85rem;
   display: flex;
   align-items: center;
@@ -96,13 +107,20 @@ const Category = styled.span`
 const Value = styled.span`
   font-weight: 600;
   color: ${({ $type }) => ($type === 'income' ? 'var(--success)' : 'var(--danger)')};
-  background: ${({ $type }) => ($type === 'income' ? 'var(--success-light)' : 'var(--danger-light)')};
+  background: ${({ $type, theme }) => 
+    $type === 'income'
+      ? theme.mode === 'dark' 
+        ? 'rgba(0, 209, 167, 0.1)' 
+        : 'rgba(0, 184, 148, 0.1)'
+      : theme.mode === 'dark'
+        ? 'rgba(255, 139, 139, 0.1)'
+        : 'rgba(255, 118, 117, 0.1)'};
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-sm);
 `;
 
 const Date = styled.span`
-  color: var(--gray);
+  color: var(--text-secondary);
   font-size: 0.85rem;
   white-space: nowrap;
 `;
@@ -116,7 +134,10 @@ const DeleteButton = styled.button`
 
   &:hover {
     opacity: 1;
-    background: var(--danger-light);
+    background: ${({ theme }) => 
+      theme.mode === 'dark' 
+        ? 'rgba(255, 139, 139, 0.1)' 
+        : 'rgba(255, 118, 117, 0.1)'};
     transform: scale(1.1);
   }
 `;
@@ -124,9 +145,10 @@ const DeleteButton = styled.button`
 const NoTransactions = styled.div`
   text-align: center;
   padding: 3rem 2rem;
-  color: var(--gray);
-  background: var(--lighter);
+  color: var(--text-secondary);
+  background: var(--background);
   border-radius: var(--radius-md);
+  border: 1px solid var(--border);
   font-size: 0.9rem;
 
   svg {
