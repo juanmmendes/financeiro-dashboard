@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# 💰 Finance Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+![Finance Dashboard Logo](public/favicon.svg)
 
-In the project directory, you can run:
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/)
+![GitHub last commit](https://img.shields.io/github/last-commit/juanmmendes/financeiro-dashboard?style=for-the-badge)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📊 Sobre o Projeto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+O Finance Dashboard é uma aplicação web moderna para controle financeiro pessoal, desenvolvida com React e Styled Components. Com uma interface intuitiva e amigável, permite aos usuários gerenciar suas finanças de forma eficiente e organizada.
 
-### `npm test`
+### ✨ Funcionalidades
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 💸 Controle de receitas e despesas
+- 📁 Categorização de transações
+- 📈 Visualização do saldo atual
+- 🏷️ Filtros por categoria
+- 💾 Armazenamento local dos dados
+- 📱 Interface responsiva
 
-### `npm run build`
+## 🚀 Como Usar
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pré-requisitos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js (versão 14 ou superior)
+- npm ou yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Instalação
 
-### `npm run eject`
+1. Clone o repositório
+\```bash
+git clone https://github.com/juanmmendes/financeiro-dashboard.git
+\```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Instale as dependências
+\```bash
+cd finance-dashboard
+npm install
+# ou
+yarn install
+\```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Inicie o servidor de desenvolvimento
+\```bash
+npm start
+# ou
+yarn start
+\```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Acesse `http://localhost:3000` no seu navegador
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠️ Tecnologias Utilizadas
 
-## Learn More
+- [React](https://reactjs.org/) - Biblioteca JavaScript para construção de interfaces
+- [Styled Components](https://styled-components.com/) - Estilização com CSS-in-JS
+- [React Icons](https://react-icons.github.io/react-icons/) - Ícones para React
+- [LocalStorage API](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage) - Armazenamento local dos dados
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📱 Interface
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<div align="center">
 
-### Code Splitting
+### 🌞 Modo Claro
+![Light Mode](link-para-screenshot-modo-claro)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+</div>
 
-### Analyzing the Bundle Size
+## 📈 Estrutura do Projeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+\```
+finance-dashboard/
+├── public/
+│   ├── favicon.svg
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── Card.jsx
+│   │   ├── TransactionForm.jsx
+│   │   └── TransactionList.jsx
+│   ├── context/
+│   │   └── FinanceContext.js
+│   ├── pages/
+│   │   └── Dashboard.jsx
+│   ├── styles/
+│   │   └── GlobalStyle.js
+│   └── App.js
+└── package.json
+\```
 
-### Making a Progressive Web App
+## 🤝 Como Contribuir
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Faça um Fork do projeto
+2. Crie uma Branch para sua Feature (`git checkout -b feature/AmazingFeature`)
+3. Adicione suas mudanças (`git add .`)
+4. Comite suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+5. Faça o Push da Branch (`git push origin feature/AmazingFeature`)
+6. Abra um Pull Request
 
-### Advanced Configuration
+## 📝 Licença
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-### Deployment
+## 👨‍💻 Autor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Feito com ❤️ por Juan Mendes
 
-### `npm run build` fails to minify
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/juan-mendes-20445596)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/juanmmendes)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+<div align="center">
+  
+### 🌟 Deixe uma estrela se você gostou do projeto!
+
+</div>
