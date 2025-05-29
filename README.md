@@ -62,29 +62,6 @@ yarn start
 - [React Icons](https://react-icons.github.io/react-icons/) - Ícones para React
 - [LocalStorage API](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage) - Armazenamento local dos dados
 
-
-
-## 📈 Estrutura do Projeto
-
-\```
-finance-dashboard/
-├── public/
-│   ├── favicon.svg
-│   └── index.html
-├── src/
-│   ├── components/
-│   │   ├── Card.jsx
-│   │   ├── TransactionForm.jsx
-│   │   └── TransactionList.jsx
-│   ├── context/
-│   │   └── FinanceContext.js
-│   ├── pages/
-│   │   └── Dashboard.jsx
-│   ├── styles/
-│   │   └── GlobalStyle.js
-│   └── App.js
-└── package.json
-\```
 ##  Print do Projeto:
 ![Exemplo1](Dashboard.png)
 ## 🤝 Como Contribuir
