@@ -1,30 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from '../utils/constants';
 
 const FinanceContext = createContext();
 
 export const useFinance = () => useContext(FinanceContext);
-
-// Categorias predefinidas
-const INCOME_CATEGORIES = [
-  'Salário',
-  'Freelance',
-  'Investimentos',
-  'Negócios',
-  'Aluguel',
-  'Outros'
-];
-
-const EXPENSE_CATEGORIES = [
-  'Alimentação',
-  'Transporte',
-  'Moradia',
-  'Saúde',
-  'Educação',
-  'Lazer',
-  'Compras',
-  'Contas',
-  'Outros'
-];
 
 export const FinanceProvider = ({ children }) => {
   const [error, setError] = useState(null);
@@ -196,7 +175,6 @@ export const FinanceProvider = ({ children }) => {
     }
     return transactions.filter(t => t.category === selectedCategory);
   };
-
   const getCategoryTotals = (type) => {
     const categories = type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
     return categories.map(category => ({
@@ -205,6 +183,66 @@ export const FinanceProvider = ({ children }) => {
         .filter(t => t.type === type && t.category === category)
         .reduce((acc, t) => acc + (parseFloat(t.value) || 0), 0)
     }));
+  };  const getTimelineData = () => {
+    const today = new Date();
+    const last12Months = Array.from({ length: 12 }, (_, i) => {
+      const date = new Date();
+      date.setMonth(today.getMonth() - i);
+      return date.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
+    }).reverse();    const monthlyData = last12Months.map(monthYear => {
+      const monthTransactions = transactions.filter(t => {
+        const tDate = new Date(t.date);
+        return tDate.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' }) === monthYear;
+      });
+
+      return {
+        month: monthYear,
+        income: monthTransactions
+          .filter(t => t.type === 'income')
+          .reduce((acc, t) => acc + parseFloat(t.value), 0),
+        expense: monthTransactions
+          .filter(t => t.type === 'expense')
+          .reduce((acc, t) => acc + parseFloat(t.value), 0),
+      };
+    });
+
+    return {
+      labels: monthlyData.map(d => d.month),
+      incomeData: monthlyData.map(d => d.income),
+      expenseData: monthlyData.map(d => d.expense),
+    };
+  };
+
+  const getTrends = () => {
+    const lastMonthDate = new Date();
+    lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+    
+    const currentMonthTransactions = transactions.filter(t => new Date(t.date) >= lastMonthDate);
+    const previousMonthDate = new Date(lastMonthDate);
+    previousMonthDate.setMonth(previousMonthDate.getMonth() - 1);
+    const previousMonthTransactions = transactions.filter(
+      t => new Date(t.date) >= previousMonthDate && new Date(t.date) < lastMonthDate
+    );
+
+    const calculateTotal = (transactions, type) => 
+      transactions
+        .filter(t => t.type === type)
+        .reduce((acc, t) => acc + (parseFloat(t.value) || 0), 0);
+
+    const currentIncome = calculateTotal(currentMonthTransactions, 'income');
+    const previousIncome = calculateTotal(previousMonthTransactions, 'income');
+    const currentExpenses = calculateTotal(currentMonthTransactions, 'expense');
+    const previousExpenses = calculateTotal(previousMonthTransactions, 'expense');
+
+    const calculateTrend = (current, previous) => {
+      if (previous === 0) return current === 0 ? 0 : 100;
+      return ((current - previous) / previous) * 100;
+    };
+
+    return {
+      income: calculateTrend(currentIncome, previousIncome),
+      expense: calculateTrend(currentExpenses, previousExpenses),
+    };
   };
 
   return (
@@ -222,8 +260,9 @@ export const FinanceProvider = ({ children }) => {
       selectedCategory,
       setSelectedCategory,
       incomeCategories: INCOME_CATEGORIES,
-      expenseCategories: EXPENSE_CATEGORIES,
-      getCategoryTotals
+      expenseCategories: EXPENSE_CATEGORIES,      getCategoryTotals,
+      getTrends,
+      getTimelineData
     }}>
       {children}
     </FinanceContext.Provider>

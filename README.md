@@ -60,6 +60,8 @@ yarn start
 - [React](https://reactjs.org/) - Biblioteca JavaScript para construção de interfaces
 - [Styled Components](https://styled-components.com/) - Estilização com CSS-in-JS
 - [React Icons](https://react-icons.github.io/react-icons/) - Ícones para React
+- [Chart.js](https://www.chartjs.org/) - Biblioteca de gráficos
+- [React Chart.js 2](https://react-chartjs-2.js.org/) - Wrapper React para Chart.js
 - [LocalStorage API](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage) - Armazenamento local dos dados
 
 ##  Print do Projeto:

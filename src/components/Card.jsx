@@ -82,17 +82,20 @@ const CardTrend = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: ${({ $type }) => {
-    switch ($type) {
-      case 'income':
-        return 'var(--success)';
-      case 'expense':
-        return 'var(--danger)';
-      default:
-        return 'var(--primary)';
-    }
+  color: ${({ $trend }) => {
+    if ($trend === 0) return 'var(--text-secondary)';
+    return $trend > 0 ? 'var(--success)' : 'var(--danger)';
   }};
   margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: ${({ $trend }) => {
+    if ($trend === 0) return 'transparent';
+    return $trend > 0 
+      ? 'var(--success-light-hover)' 
+      : 'var(--danger-light-hover)';
+  }};
+  border-radius: var(--radius-sm);
+  width: fit-content;
 `;
 
 const EditInput = styled.input`
@@ -110,7 +113,7 @@ const EditInput = styled.input`
   }
 `;
 
-const Card = ({ title, value, type, editable, onEdit }) => {
+const Card = ({ title, value, type, trend = 0, editable, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
 
@@ -167,11 +170,14 @@ const Card = ({ title, value, type, editable, onEdit }) => {
         ) : (
           value
         )}
-      </CardValue>
-      <CardTrend $type={type}>
-        {type === 'income' && '↗ +2.5%'}
-        {type === 'expense' && '↘ -1.8%'}
-        {type === 'balance' && '• Updated now'}
+      </CardValue>      <CardTrend $trend={trend}>
+        {trend === 0 ? (
+          '• No change'
+        ) : (
+          <>
+            {trend > 0 ? '↗' : '↘'} {trend > 0 ? '+' : ''}{trend.toFixed(1)}%
+          </>
+        )}
       </CardTrend>
     </CardContainer>
   );
