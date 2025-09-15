@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import {
   Chart as ChartJS,
@@ -11,7 +11,6 @@ import {
   Legend
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { CHART_COLORS } from '../utils/constants';
 import { formatCurrency } from '../utils/formatters';
 
 ChartJS.register(
